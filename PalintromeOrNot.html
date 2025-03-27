@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Palindrome or Not</title>
+</head>
+<style type="text/css">
+fieldset{width: 100px; margin: auto; padding: auto;}
+button{margin: 1px; cursor: pointer;}
+textarea{overflow: scroll;}
+</style>
+<body>
+<fieldset style="border-radius: 15px;">
+<legend>Palindrome or Not</legend>
+<label>Enter Any</label>
+<button onclick="clearvalue('text1')">x</button>
+<br>
+<textarea id="text1" oninput="run()" id="copy" rows="5" placeholder="Enter Any"></textarea>
+<br>
+<button onclick="copyvalue('copy')">Copy</button>
+<button onclick="clearvalue('copy')">x</button>
+<br>
+<textarea id="copy" rows="5">Palindrome or not</textarea>
+</fieldset>
+<script type="text/javascript">
+function run(){
+function checkPalindrome(str){
+str = str.replace(/[^a-zA-Z0-9]/g, '');
+var str1=str.split('').reverse().join('');
+document.getElementById('copy').value=str1+ "\n";
+return str === str.split('').reverse().join('');
+}
+const userInput=document.getElementById('text1').value; 
+if(checkPalindrome(userInput)){
+document.getElementById('copy').value +=userInput +"\n"+"is a palindrome"
+}
+else{
+document.getElementById('copy').value +=userInput +"\n"+"is not a palindrome"
+}
+if(userInput==""){document.getElementById('copy').value="Enter Value";}
+}
+</script>
+<script type="text/javascript">
+function copyvalue(id){const copy=document.getElementById(id);copy.focus();copy.select();document.execCommand("Copy");}
+function clearvalue(id){const del=document.getElementById(id);del.select();document.execCommand("Delete");}	
+</script>
+</body>
+</html>
